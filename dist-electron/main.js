@@ -1,7 +1,23 @@
-import { app, BrowserWindow } from "electron";
+import { Menu, MenuItem, app, BrowserWindow } from "electron";
 import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+const addCustomMenu = (win2) => {
+  const menu = Menu.getApplicationMenu();
+  if (!menu) return;
+  const fileMenu = menu.items.find((item) => item.label === "File");
+  if (fileMenu == null ? void 0 : fileMenu.submenu) {
+    fileMenu.submenu.append(
+      new MenuItem({
+        label: "Go to Home",
+        click: () => {
+          win2 == null ? void 0 : win2.webContents.send("navigate-to-home");
+        }
+      })
+    );
+  }
+  Menu.setApplicationMenu(menu);
+};
 createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 process.env.APP_ROOT = path.join(__dirname, "..");
@@ -25,6 +41,7 @@ function createWindow() {
   } else {
     win.loadFile(path.join(RENDERER_DIST, "index.html"));
   }
+  addCustomMenu(win);
 }
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {

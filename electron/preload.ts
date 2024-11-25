@@ -21,4 +21,8 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
 
   // You can expose other APTs you need here.
   // ...
-})
+});
+
+contextBridge.exposeInMainWorld('electron', {
+  onNavigateToHome: (callback: () => void) => ipcRenderer.on('navigate-to-home', () => callback()),
+});

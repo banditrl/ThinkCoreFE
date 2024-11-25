@@ -16,9 +16,15 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
+    "noImplicitAny": true, 
+    "noImplicitReturns": true,
+    "noImplicitThis": true, 
+    "alwaysStrict": true,
+    "noUnusedLocals": true, 
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "allowJs": false,
+    "checkJs": false 
   },
   "include": ["src", "electron"],
   "references": [{ "path": "./tsconfig.node.json" }]

@@ -1,13 +1,24 @@
-import { Routes } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Routes as ReactRoutes, Route, useNavigate } from 'react-router-dom';
+import HomeModule from '../modules/home/HomeModule';
+import { RoutesEnum } from './routesEnum';
 
-const AppRoutes = () => {
+const Routes: React.FC = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (window.electron) {
+      window.electron.onNavigateToHome(() => {
+        navigate(RoutesEnum.home);
+      });
+    }
+  }, [navigate]);
+
   return (
-    <div>
-      <Routes>
-        {/* <Route path={RoutesConstants.home} element={<HomeModule />} /> */}
-      </Routes>
-    </div>
+    <ReactRoutes>
+      <Route path={RoutesEnum.home} element={<HomeModule />} />
+    </ReactRoutes>
   );
 };
 
-export default AppRoutes;
+export default Routes;

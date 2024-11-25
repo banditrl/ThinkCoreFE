@@ -1,14 +1,10 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
+import Routes from '../routes/Routes';
 
-import HomeModule from '../modules/home/HomeModule';
-import { RoutesConstants } from '../routes/routesConstants';
-
-function App() {
+const App: React.FC = () => {
   return (
     <Router>
-      <Routes>
-        <Route path={RoutesConstants.home} element={<HomeModule />} />
-      </Routes>
+      <Routes />
     </Router>
   );
 }
