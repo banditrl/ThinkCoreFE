@@ -9,14 +9,14 @@ const Routes: React.FC = () => {
   useEffect(() => {
     if (window.electron) {
       window.electron.onNavigateToHome(() => {
-        navigate(RoutesEnum.home);
+        navigate(RoutesEnum.Home);
       });
     }
   }, [navigate]);
 
   return (
     <ReactRoutes>
-      <Route path={RoutesEnum.home} element={<HomeModule />} />
+      <Route path={RoutesEnum.Home} element={<HomeModule />} />
     </ReactRoutes>
   );
 };
